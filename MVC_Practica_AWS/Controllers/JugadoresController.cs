@@ -28,5 +28,10 @@ namespace MVC_Practica_AWS.Controllers
                 this.repo.JugadoresEquipo(idequipo);
             return View(jugadores);
         }
+
+        public IActionResult CrearJugador()
+        {
+            return View();
+        }
     }
 }
