@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MVC_Practica_AWS.Models.Equipo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEquipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumChampions)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Web)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEquipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                <img style="width:100px;height:100px" src="@item.Imagen"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumChampions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Web)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                <a asp-controller="Jugadores" asp-action="JugadoresEquipo"
+                   asp-route-idequipo="@item.IdEquipo" class="btn btn-dark">
+                    Jugadores
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

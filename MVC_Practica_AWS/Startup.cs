@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MVC_Practica_AWS.Data;
+using MVC_Practica_AWS.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace MVC_Practica_AWS
 {
@@ -23,6 +26,11 @@ namespace MVC_Practica_AWS
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string cadenamariabd =
+                   this.Configuration.GetConnectionString("awsMariaDB");
+            services.AddTransient<RepositoyChampions>();
+            services.AddDbContext<ChampionsContext>
+                (options => options.UseMySql(cadenamariabd, ServerVersion.AutoDetect(cadenamariabd)));
             services.AddControllersWithViews();
         }
 
