@@ -58,7 +58,7 @@ namespace MVC_Practica_AWS.Repositories
                 IdJugador = this.GetMaxJugadoresId(),
                 Nombre = nombre,
                 Posicion = posicion,
-                Imagen = "http://acs.amazonaws.com/groups/global/AllUsers/" + imagen,
+                Imagen =  imagen,
                 IdEquipo = idequipo
 
         };
