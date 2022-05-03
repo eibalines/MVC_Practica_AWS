@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using MVC_Practica_AWS.Data;
 using MVC_Practica_AWS.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Amazon.S3;
+using MVC_Practica_AWS.Services;
 
 namespace MVC_Practica_AWS
 {
@@ -31,6 +33,8 @@ namespace MVC_Practica_AWS
             services.AddTransient<RepositoyChampions>();
             services.AddDbContext<ChampionsContext>
                 (options => options.UseMySql(cadenamariabd, ServerVersion.AutoDetect(cadenamariabd)));
+            services.AddAWSService<IAmazonS3>();
+            services.AddTransient<ServiceAWSS3>();
             services.AddControllersWithViews();
         }
 

@@ -5,15 +5,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using MVC_Practica_AWS.Models;
 using MVC_Practica_AWS.Repositories;
+using MVC_Practica_AWS.Services;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace MVC_Practica_AWS.Controllers
 {
     public class JugadoresController : Controller
     {
         private RepositoyChampions repo;
-        public JugadoresController(RepositoyChampions repo)
+        private ServiceAWSS3 service;
+        public JugadoresController(RepositoyChampions repo, ServiceAWSS3 service)
         {
             this.repo = repo;
+            this.service = service;
         }
 
         public IActionResult Index()
@@ -34,10 +39,14 @@ namespace MVC_Practica_AWS.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CrearJugador(Jugador jugador)
+        public async Task<IActionResult> CrearJugador(Jugador jugador, IFormFile file)
         {
-            this.repo.CrearJugador(jugador.Nombre, jugador.Posicion, jugador.Imagen, jugador.IdEquipo);
-            return RedirectToAction("Index", "Jugadores");
+            this.repo.CrearJugador(jugador.Nombre, jugador.Posicion, file.FileName, jugador.IdEquipo);
+            using (Stream stream = file.OpenReadStream())
+            {
+                await this.service.UploadFileAsync(stream, file.FileName);
+            }
+                return RedirectToAction("Index", "Jugadores");
         }
     }
 }
