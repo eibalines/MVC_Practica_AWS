@@ -33,5 +33,11 @@ namespace MVC_Practica_AWS.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult CrearJugador(Jugador jugador)
+        {
+            this.repo.CrearJugador(jugador.Nombre, jugador.Posicion, jugador.Imagen, jugador.IdEquipo);
+            return RedirectToAction("Index", "Jugadores");
+        }
     }
 }

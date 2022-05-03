@@ -7,9 +7,11 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="CrearApuesta" asp-controller="Apuestas" class="btn btn-outline-dark">
+    Crear Apuesta
+    </a>
 </p>
-<table class="table">
+<table class="table table-bordered table-hover justify">
     <thead>
         <tr>
             <th>
@@ -54,11 +56,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.GolVisitante)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+           
         </tr>
 }
     </tbody>

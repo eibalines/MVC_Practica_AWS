@@ -44,16 +44,12 @@
                 @Html.DisplayFor(modelItem => item.Posicion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Imagen)
+                <img style="width:100px;height:100px" src="@item.Imagen"/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdEquipo)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+          
         </tr>
 }
     </tbody>

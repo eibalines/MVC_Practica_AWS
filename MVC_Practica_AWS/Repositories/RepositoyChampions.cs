@@ -24,9 +24,6 @@ namespace MVC_Practica_AWS.Repositories
         }
 
 
-
-
-
         public List<Jugador> GetTodosJugadores()
         {
             return this.context.Jugadores.ToList();
@@ -91,11 +88,14 @@ namespace MVC_Practica_AWS.Repositories
             Apuesta apuesta = new Apuesta
             {
                 IdApuesta = this.GetMaxApuestasId(),
+                Usuario = usuario,
                 IdEquipoLocal = idlocal,
                 IdEquipoVisitante = idvisitante,
                 GolLocal = gollocal,
                 GolVisitante = golvisitante
             };
+            this.context.Apuestas.Add(apuesta);
+            this.context.SaveChanges();
         }
     }
 }
